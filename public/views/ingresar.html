@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InmoNacional | Ingresar</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/ingresar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+    <div class="logo">
+        <i class="fa-solid fa-house-chimney"></i> <span>Inmo</span>Nacional
+    </div>
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+    <nav id="mainNav">
+        <a href="/">Inicio</a>
+        <a href="/propiedades">Propiedades</a>
+        <a href="/agencias">Agencias</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/contacto">Contacto</a>
+        <a href="/ingresar" class="active btn-login">Ingresar</a>
+    </nav>
+</header>
+
+    <div class="login-container">
+        <div class="login-card">
+            <h2>Iniciar sesión</h2>
+            <p>Accede a tu cuenta para gestionar propiedades y más.</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" required placeholder="ejemplo@correo.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required placeholder="Mínimo 4 caracteres">
+                </div>
+                <button type="submit" class="btn-submit">Ingresar</button>
+                <div id="loginError" class="error-message"></div>
+            </form>
+            <p class="register-link">¿No tienes cuenta? <a href="/registro">Regístrate aquí</a> (próximamente)</p>
+            <div class="demo-info">
+                <p><strong>Demo:</strong> cualquier correo válido (ej. usuario@test.com) y contraseña de al menos 4 caracteres.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 InmoNacional - Tu hogar nos importa</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('mainNav');
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('show');
+                    });
+                });
+            }
+        });
+
+        const form = document.getElementById('loginForm');
+        const errorDiv = document.getElementById('loginError');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            errorDiv.textContent = '';
+            if (email && email.includes('@') && password && password.length >= 4) {
+                alert('Inicio de sesión exitoso (modo demostración). Redirigiendo al inicio...');
+                window.location.href = '/';
+            } else {
+                errorDiv.textContent = 'Credenciales inválidas. Correo válido y contraseña mínimo 4 caracteres.';
+            }
+        });
+    </script>
+</body>
+</html>

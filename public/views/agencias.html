@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InmoNacional | Agencias Inmobiliarias</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/agencias.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+   <header>
+    <div class="logo">
+        <i class="fa-solid fa-house-chimney"></i> <span>Inmo</span>Nacional
+    </div>
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+    <nav id="mainNav">
+        <a href="/">Inicio</a>
+        <a href="/propiedades">Propiedades</a>
+        <a href="/agencias" class="active">Agencias</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/contacto">Contacto</a>
+        <a href="/ingresar" class="btn-login">Ingresar</a>
+    </nav>
+</header>
+
+    <div class="agencies-header">
+        <h1>Agencias Inmobiliarias</h1>
+        <p>Las mejores inmobiliarias del país, aliadas para encontrar tu hogar</p>
+    </div>
+
+    <section class="properties-section">
+        <div class="grid-properties" id="agencies-grid">
+            <div class="loading">Cargando agencias...</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 InmoNacional - Tu hogar nos importa</p>
+    </footer>
+
+    <script>
+        // Menú hamburguesa
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('mainNav');
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('show');
+                    });
+                });
+            }
+        });
+
+        async function loadAgencies() {
+            const container = document.getElementById('agencies-grid');
+            try {
+                const response = await fetch('/api/agencies');
+                if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
+                const agencies = await response.json();
+                renderAgencies(agencies);
+            } catch (error) {
+                console.error('Error al cargar agencias:', error);
+                container.innerHTML = '<div class="error">❌ No se pudieron cargar las agencias.</div>';
+            }
+        }
+
+        function renderAgencies(agencies) {
+            const container = document.getElementById('agencies-grid');
+            if (!agencies || agencies.length === 0) {
+                container.innerHTML = '<div class="no-results">No hay agencias registradas aún.</div>';
+                return;
+            }
+            const cardsHTML = agencies.map(agency => {
+                return `
+                    <div class="card">
+                        <div class="card-content" style="text-align: center;">
+                            <img src="${agency.logo}" alt="${agency.nombre}" class="agency-logo">
+                            <h3>${agency.nombre}</h3>
+                            <div class="agency-info">
+                                <p><i class="fa-solid fa-location-dot"></i> ${agency.ubicacion}</p>
+                                <p><i class="fa-solid fa-phone"></i> ${agency.telefono}</p>
+                                <p><i class="fa-solid fa-envelope"></i> ${agency.email}</p>
+                                <p><i class="fa-solid fa-calendar-alt"></i> ${agency.añosExperiencia} años de experiencia</p>
+                                <p><i class="fa-solid fa-building"></i> ${agency.propiedadesCount} propiedades publicadas</p>
+                                <span class="agency-specialty">${agency.especialidad}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            container.innerHTML = cardsHTML;
+        }
+
+        loadAgencies();
+    </script>
+</body>
+</html>

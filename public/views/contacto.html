@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InmoNacional | Contacto</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/contacto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <i class="fa-solid fa-house-chimney"></i> <span>Inmo</span>Nacional
+    </div>
+    <button class="hamburger" id="hamburgerBtn">☰</button>
+    <nav id="mainNav">
+        <a href="/">Inicio</a>
+        <a href="/propiedades">Propiedades</a>
+        <a href="/agencias">Agencias</a>
+        <a href="/nosotros">Nosotros</a>
+        <a href="/contacto" class="active">Contacto</a>
+        <a href="/ingresar" class="btn-login">Ingresar</a>
+    </nav>
+</header>
+
+    <div class="contact-header">
+        <h1>Contacto</h1>
+        <p>Estamos para ayudarte. Escríbenos o visítanos.</p>
+    </div>
+
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-form">
+                <h2>Envíanos un mensaje</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre completo *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Teléfono</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Asunto *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar mensaje</button>
+                    <p id="formFeedback" class="feedback"></p>
+                </form>
+            </div>
+
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-location-dot"></i> Oficina principal</h3>
+                    <p>Av. Francisco de Miranda, Centro Empresarial, Piso 5<br>Caracas, Distrito Capital, Venezuela</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-phone"></i> Teléfonos</h3>
+                    <p>+58 212 555 1234<br>+58 424 555 6789</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-envelope"></i> Correo electrónico</h3>
+                    <p>info@inmonacional.com<br>soporte@inmonacional.com</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-clock"></i> Horario de atención</h3>
+                    <p>Lunes a Viernes: 8:00 AM - 5:00 PM<br>Sábados: 9:00 AM - 1:00 PM</p>
+                </div>
+                <div class="map">
+                    <img src="https://images.unsplash.com/photo-1575408264798-b50b252663e6?auto=format&fit=crop&w=800&q=80" alt="Mapa de ubicación">
+                    <p><i class="fa-solid fa-location-dot"></i> Ver en Google Maps (próximamente)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 InmoNacional - Tu hogar nos importa</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('mainNav');
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('show');
+                    });
+                });
+            }
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('formFeedback');
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (!name || !email || !subject || !message) {
+                feedback.textContent = 'Por favor, completa todos los campos obligatorios.';
+                feedback.style.color = '#e63946';
+                return;
+            }
+            feedback.textContent = '¡Mensaje enviado con éxito! Te contactaremos pronto.';
+            feedback.style.color = '#2a9d8f';
+            this.reset();
+            setTimeout(() => { feedback.textContent = ''; }, 5000);
+        });
+    </script>
+</body>
+</html>

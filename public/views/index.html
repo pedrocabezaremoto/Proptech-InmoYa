@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InmoNacional | Encuentra tu Hogar</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-house-chimney"></i> <span>Inmo</span>Nacional
+        </div>
+        <button class="hamburger" id="hamburgerBtn">☰</button>
+        <nav id="mainNav">
+            <a href="/" class="active">Inicio</a>
+            <a href="/propiedades">Propiedades</a>
+            <a href="/agencias">Agencias</a>
+            <a href="/nosotros">Nosotros</a>
+            <a href="/contacto">Contacto</a>
+            <a href="/ingresar" class="btn-login">Ingresar</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Encuentra tu próximo hogar a nivel nacional</h1>
+            <p>Descubre miles de opciones en preventa, venta y alquiler.</p>
+            <div class="search-container">
+                <div class="search-field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" placeholder="Ciudad, Estado o Zona...">
+                </div>
+                <div class="search-field">
+                    <select>
+                        <option value="">Tipo de Inmueble</option>
+                        <option value="casa">Casa</option>
+                        <option value="apartamento">Apartamento</option>
+                        <option value="terreno">Terreno</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <select>
+                        <option value="">Operación</option>
+                        <option value="venta">En Venta</option>
+                        <option value="renta">En Alquiler</option>
+                    </select>
+                </div>
+                <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="properties-section">
+        <h2>Propiedades Destacadas</h2>
+        <p class="subtitle">Las mejores oportunidades del mercado inmobiliario actual.</p>
+        <div class="grid-properties">
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=500&q=80" alt="Casa moderna">
+                    <span class="tag rent">Alquiler</span>
+                </div>
+                <div class="card-content">
+                    <h3>$1,200 / mes</h3>
+                    <p class="title">Moderna Casa Familiar</p>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Caracas, Distrito Capital</p>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 3 Hab</span>
+                        <span><i class="fa-solid fa-bath"></i> 2 Baños</span>
+                        <span><i class="fa-solid fa-ruler-combined"></i> 150 m²</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&q=80" alt="Apartamento vista al mar">
+                    <span class="tag sale">VENTA</span>
+                </div>
+                <div class="card-content">
+                    <h3>$85,000</h3>
+                    <p class="title">Apartamento Vista al Mar</p>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Lechería, Anzoátegui</p>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 2 Hab</span>
+                        <span><i class="fa-solid fa-bath"></i> 2 Baños</span>
+                        <span><i class="fa-solid fa-ruler-combined"></i> 95 m²</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=500&q=80" alt="Townhouse minimalista">
+                    <span class="tag sale">VENTA</span>
+                </div>
+                <div class="card-content">
+                    <h3>$140,000</h3>
+                    <p class="title">Townhouse Minimalista</p>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> Maracay, Aragua</p>
+                    <div class="card-features">
+                        <span><i class="fa-solid fa-bed"></i> 4 Hab</span>
+                        <span><i class="fa-solid fa-bath"></i> 3 Baños</span>
+                        <span><i class="fa-solid fa-ruler-combined"></i> 210 m²</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 InmoNacional - Tu hogar nos importa</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('mainNav');
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('show');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

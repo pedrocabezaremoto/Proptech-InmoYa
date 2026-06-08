@@ -1,0 +1,137 @@
+.about-hero {
+    background: linear-gradient(rgba(29, 53, 87, 0.8), rgba(29, 53, 87, 0.8)), 
+                url(https://images.pexels.com/photos/33146175/pexels-photo-33146175.jpeg) no-repeat center center/cover;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+}
+.about-hero h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+.about-hero p {
+    font-size: 20px;
+    opacity: 0.9;
+}
+.mission-vision {
+    padding: 60px 8%;
+    background: white;
+}
+.mv-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.mv-card {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+.mv-card:hover {
+    transform: translateY(-5px);
+}
+.mv-card i {
+    font-size: 60px;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+.mv-card h3 {
+    font-size: 24px;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+.mv-card p {
+    color: var(--text-light);
+    line-height: 1.5;
+}
+.team-section {
+    padding: 60px 8%;
+    text-align: center;
+    background: var(--bg-light);
+}
+.team-section h2 {
+    font-size: 32px;
+    color: var(--primary);
+}
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+.team-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.team-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--accent);
+}
+.team-card h3 {
+    font-size: 20px;
+    color: var(--primary);
+}
+.team-card span {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin: 10px 0;
+}
+.team-card p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin: 15px 0;
+}
+.social-links a {
+    color: var(--primary);
+    margin: 0 8px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+.social-links a:hover {
+    color: var(--accent);
+}
+.stats {
+    background: var(--primary);
+    color: white;
+    padding: 60px 8%;
+}
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: center;
+}
+.stat-item i {
+    font-size: 48px;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+.stat-item h3 {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+.stat-item p {
+    font-size: 16px;
+    opacity: 0.9;
+}

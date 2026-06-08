@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InmoNacional | Todas las Propiedades</title>
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/propiedades.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-house-chimney"></i> <span>Inmo</span>Nacional
+        </div>
+        <button class="hamburger" id="hamburgerBtn">☰</button>
+        <nav id="mainNav">
+            <a href="/">Inicio</a>
+            <a href="/propiedades" class="active">Propiedades</a>
+            <a href="/agencias">Agencias</a>
+            <a href="/nosotros">Nosotros</a>
+            <a href="/contacto">Contacto</a>
+            <a href="/ingresar" class="btn-login">Ingresar</a>
+        </nav>
+    </header>
+
+    <div class="properties-header">
+        <h1>Todas las Propiedades</h1>
+        <p>Encuentra la casa o apartamento de tus sueños en todo el país</p>
+    </div>
+
+    <section class="properties-section">
+        <div class="grid-properties" id="properties-grid">
+            <div class="loading">Cargando propiedades...</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 InmoNacional - Tu hogar nos importa</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const nav = document.getElementById('mainNav');
+            if (hamburger && nav) {
+                hamburger.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('show');
+                    });
+                });
+            }
+        });
+
+        function renderProperties(properties) {
+            const container = document.getElementById('properties-grid');
+            if (!properties || properties.length === 0) {
+                container.innerHTML = '<div class="no-results">No se encontraron propiedades.</div>';
+                return;
+            }
+            const cardsHTML = properties.map(prop => {
+                const tagClass = prop.operacion === 'alquiler' ? 'rent' : 'sale';
+                const tagText = prop.operacion === 'alquiler' ? 'Alquiler' : 'VENTA';
+                const priceDisplay = prop.operacion === 'alquiler' 
+                    ? `$${prop.precio.toLocaleString()} / mes` 
+                    : `$${prop.precio.toLocaleString()}`;
+                return `
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="${prop.imagen}" alt="${prop.titulo}">
+                            <span class="tag ${tagClass}">${tagText}</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>${priceDisplay}</h3>
+                            <p class="title">${prop.titulo}</p>
+                            <p class="location"><i class="fa-solid fa-location-dot"></i> ${prop.ubicacion}</p>
+                            <div class="card-features">
+                                <span><i class="fa-solid fa-bed"></i> ${prop.habitaciones} Hab</span>
+                                <span><i class="fa-solid fa-bath"></i> ${prop.banos} Baños</span>
+                                <span><i class="fa-solid fa-ruler-combined"></i> ${prop.area} m²</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            container.innerHTML = cardsHTML;
+        }
+
+        async function loadProperties() {
+            const container = document.getElementById('properties-grid');
+            try {
+                const response = await fetch('/api/properties');
+                if (!response.ok) throw new Error('Error al cargar las propiedades');
+                const properties = await response.json();
+                renderProperties(properties);
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = '<div class="error">❌ No se pudieron cargar las propiedades. Intenta más tarde.</div>';
+            }
+        }
+        loadProperties();
+    </script>
+</body>
+</html>

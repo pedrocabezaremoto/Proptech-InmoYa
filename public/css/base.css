@@ -1,0 +1,281 @@
+:root {
+    --primary: #1d3557;
+    --accent: #4cc9f0;
+    --text-dark: #2b2d42;
+    --text-light: #6c757d;
+    --bg-light: #f8f9fa;
+    --white: #ffffff;
+    --shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* ========== HEADER Y NAVEGACIÓN RESPONSIVA ========== */
+header {
+    background: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    z-index: 101;
+}
+.logo span { color: var(--accent); }
+
+/* Botón hamburguesa (oculto en desktop) */
+.hamburger {
+    display: none;
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: var(--primary);
+    cursor: pointer;
+    z-index: 101;
+}
+
+/* Navegación desktop */
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+nav a:hover, nav a.active { color: var(--accent); }
+
+/* Botón de Ingresar (ya no hay Publicar) */
+.btn-login {
+    background: var(--primary);
+    color: var(--white);
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+.btn-login:hover {
+    background: #112237;
+}
+
+/* ========== RESPONSIVE: MÓVIL ========== */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        transition: left 0.3s ease;
+        z-index: 100;
+    }
+    nav.show {
+        left: 0;
+    }
+    nav a {
+        font-size: 18px;
+    }
+    /* Estilo especial para el botón de Ingresar dentro del menú */
+    nav .btn-login {
+        background: var(--primary);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        margin-top: 10px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    .hamburger {
+        font-size: 24px;
+    }
+    nav {
+        width: 80%;
+    }
+}
+
+/* ========== RESTO DE ESTILOS (sin cambios) ========== */
+.hero {
+    background: linear-gradient(rgba(29, 53, 87, 0.75), rgba(29, 53, 87, 0.75)), 
+                url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+    background-size: cover;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 40px 20px;
+}
+.hero-content h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    margin-bottom: 10px;
+}
+.hero-content p {
+    font-size: clamp(14px, 4vw, 18px);
+    margin-bottom: 30px;
+}
+.search-container {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    max-width: 900px;
+    margin: 0 auto;
+}
+.search-field {
+    display: flex;
+    align-items: center;
+    background: #f1f3f5;
+    padding: 10px 15px;
+    border-radius: 6px;
+    flex: 1 1 200px;
+}
+.search-field i { color: var(--text-light); margin-right: 10px; }
+.search-field input, .search-field select {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    font-size: 15px;
+}
+.btn-search {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex: 1 1 auto;
+}
+.btn-search:hover { background: #33b5dc; }
+.properties-section {
+    padding: 40px 5%;
+    text-align: center;
+}
+.properties-section h2 {
+    font-size: clamp(24px, 5vw, 32px);
+    color: var(--primary);
+}
+.subtitle {
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+.grid-properties {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.card-image {
+    position: relative;
+    height: 200px;
+}
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.tag.rent { background: #e63946; }
+.tag.sale { background: #2a9d8f; }
+.card-content { padding: 20px; }
+.card-content h3 {
+    color: var(--primary);
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+.card-content .title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.card-content .location {
+    color: var(--text-light);
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+.card-features {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #edf2f7;
+    padding-top: 12px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+.card-features i { margin-right: 5px; color: var(--primary); }
+footer {
+    text-align: center;
+    padding: 25px;
+    background: var(--primary);
+    color: white;
+    margin-top: 40px;
+    font-size: 14px;
+}
+@media (max-width: 480px) {
+    .card-image { height: 180px; }
+    .card-content { padding: 15px; }
+    .card-content h3 { font-size: 18px; }
+}
